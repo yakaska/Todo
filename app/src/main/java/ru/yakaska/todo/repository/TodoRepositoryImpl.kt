@@ -1,17 +1,18 @@
 package ru.yakaska.todo.repository
 
-import ru.yakaska.todo.model.Todo
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import ru.yakaska.todo.data.TaskDao
+import ru.yakaska.todo.model.Task
+import java.time.LocalDateTime
+import javax.inject.Inject
 
-class TodoRepositoryImpl : TodoRepository {
-    override suspend fun getTodos(): List<Todo> {
-        TODO("Not yet implemented")
-    }
+class TodoRepositoryImpl @Inject constructor(
+    private val taskDao: TaskDao,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+) : TodoRepository {
 
-    override suspend fun getTodo(id: Int): Todo? {
-        TODO("Not yet implemented")
-    }
-
-
-    private fun
+    override fun getAll(): Flow<List<Task>> = taskDao.getAll()
 
 }
