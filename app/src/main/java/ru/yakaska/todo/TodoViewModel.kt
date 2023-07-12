@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.yakaska.todo.model.Task
-import ru.yakaska.todo.repository.TodoRepository
+import ru.yakaska.todo.repository.TaskRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class TodoViewModel @Inject constructor(
-    private val todoRepository: TodoRepository
+    private val taskRepository: TaskRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(TodoListUiSTate(emptyList()))
@@ -23,7 +23,7 @@ class TodoViewModel @Inject constructor(
     init {
         Log.d("TodoViewModel", "Init")
         viewModelScope.launch {
-            todoRepository.getAll().collect { todos ->
+            taskRepository.getAll().collect { todos ->
                 _uiState.value = _uiState.value.copy(tasks = todos)
             }
         }

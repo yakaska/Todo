@@ -19,14 +19,7 @@ class MainActivity : ComponentActivity() {
         val todoViewModel: TodoViewModel by viewModels()
 
         setContent {
-            TodoTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    TodoApp(todoViewModel)
-                }
-            }
+            TodoApp()
         }
     }
 }

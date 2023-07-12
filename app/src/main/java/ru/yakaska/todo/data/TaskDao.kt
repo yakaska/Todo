@@ -11,7 +11,7 @@ import ru.yakaska.todo.model.TaskWithActivities
 @Dao
 interface TaskDao {
 
-    @Query("SELECT * FROM todo")
+    @Query("SELECT * FROM tasks")
     fun getAll(): Flow<List<Task>>
 
     @Transaction

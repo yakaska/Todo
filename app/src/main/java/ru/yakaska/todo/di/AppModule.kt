@@ -7,8 +7,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.yakaska.todo.data.TaskDao
 import ru.yakaska.todo.data.TodoDatabase
-import ru.yakaska.todo.repository.TodoRepository
-import ru.yakaska.todo.repository.TodoRepositoryImpl
+import ru.yakaska.todo.repository.TaskRepository
+import ru.yakaska.todo.repository.TaskRepositoryImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -22,6 +22,6 @@ class AppModule {
     fun provideTodoDao(database: TodoDatabase): TaskDao = database.todoDao()
 
     @Provides
-    fun provideTodoRepository(taskDao: TaskDao): TodoRepository = TodoRepositoryImpl(taskDao)
+    fun provideTodoRepository(taskDao: TaskDao): TaskRepository = TaskRepositoryImpl(taskDao)
 
 }

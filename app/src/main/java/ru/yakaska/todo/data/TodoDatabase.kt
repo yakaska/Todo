@@ -3,9 +3,21 @@ package ru.yakaska.todo.data
 import android.content.Context
 import androidx.room.*
 import ru.yakaska.todo.data.converter.LocalDateTimeConverter
+import ru.yakaska.todo.model.Activity
+import ru.yakaska.todo.model.Tag
 import ru.yakaska.todo.model.Task
+import ru.yakaska.todo.model.TaskTagXRef
 
-@Database(entities = [Task::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        Task::class,
+        Activity::class,
+        Tag::class,
+        TaskTagXRef::class
+    ],
+    version = 1,
+    exportSchema = false
+)
 @TypeConverters(LocalDateTimeConverter::class)
 abstract class TodoDatabase : RoomDatabase() {
 
@@ -20,7 +32,7 @@ abstract class TodoDatabase : RoomDatabase() {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         TodoDatabase::class.java, "todo_database"
-                    ).addCallback(PrepopulateTodo(context)).build()
+                    ).build()
                 }
             }
             return INSTANCE!!
